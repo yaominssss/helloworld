@@ -1,0 +1,26 @@
+\documentclass[a4paper]{report}
+\usepackage[UTF8]{ctex}
+\begin{document}
+\leftline{\Large\textbf{\kaishu 第一章 \space 场论}}%If you want to reopen dictionary, configuration should be checked
+\leftline{\large\textbf{一、标量场 \space 矢量场}}
+ 对定常的标量场$\varphi(\textbf{r},t)=\varphi_0=constant$为等势线，与之相对应的面就是等势面，等势面上的$\varphi$都相等。函数值改变的主要在等位面的法线方向发生。对于矢量场，主要依靠矢量线来辅助，每一点的切线方向都与该点的矢量方向重合。设$d\textbf{r}$是矢量线的切向元素，定义为
+\begin{equation}
+     a\times d\textbf{r} =0
+\end{equation}
+该定义其实有点类似流线的定义。我们可以通过矢量线的疏密程度，来判断矢量的大小。\textit{矢量管定义}\\
+\leftline{\large\textbf{1.1、梯度 \space gradient}}
+梯度是描写标量场不均匀的性的量度，描写标量场中每点邻域内的函数变化
+\begin{equation}
+	\frac{\partial\varphi}{\partial s}=\lim_{MM' \to 0}\frac{\varphi(M')-\varphi(M)}{MM'}
+\end{equation}而每个方向都有对应的方向导数，但每个方向导数都不是相互独立的，我们可以通过经M点的等位面法线方向n上的方向导数$\frac{\partial \varphi}{\partial n}$通过以下公式
+\begin{equation}
+	\frac{\partial \varphi}{\partial s}=\frac{\partial \varphi}{\partial n}cos(n,s)
+\end{equation}
+那么大小为$\frac{\partial \varphi}{\partial n}$，方向为n的失恋称为标量函数$\varphi$的梯度，公式为
+\begin{equation}
+      grad \varphi=\frac{\partial \varphi}{\partial n} {n} 
+\end{equation}
+在n方向上导数值最大，即在该方向变化最快，而在等位面的切线方向导数等于0，即不改变。
+
+\leftline{\Large\textbf{\kaishu 第二章 \space 流体力学}}
+\end{document}
