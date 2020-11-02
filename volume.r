@@ -1,0 +1,43 @@
+dat2020<-read.csv('F:\\intern\\snapshot2020.csv')
+library(dplyr)
+dat20=filter(dat2020,code>=1&channel_no!='channel')
+dat20time<-dat20[!duplicated(dat20$update_time),]
+dat20tQ<-matrix(1:nrow(dat20time)*2,nrow(dat20time),2)
+dat20tQ[,1]=dat20time$update_time
+dat20tQ[,2]=dat20time$total_volume
+i=1
+j=1
+n=nrow(dat20)
+while (i<=n) {
+    if(dat20[i,3]==dat20tQ[j,1]){
+      dat20tQ[j,2]<-dat20tQ[j,2]+dat20[i,5]
+      i<-i+1
+    }
+    else 
+      {j<-j+1}
+}
+plot(x=(dat20tQ[,1]-dat20tQ[1,1])/1000/3600,y=dat20tQ[,2],type='l',
+     col='blue',main='快照时间流量变化图20200722',
+     xlab = 'Update_time',ylab ='total volume',lwd=2)
+channelflow=filter(dat18,total_volume>0&update_time<100800000)
+channelflow$channel_no=as.numeric(channelflow$channel_no)
+channelflow<-channelflow[order(channelflow$channel_no),]
+channelnum=channelflow[!duplicated(channelflow$channel_no),]
+i=1
+j=1
+channelflown<-dat18[order(dat18$channel_no),]
+n=nrow(channelflown)
+channelnum$num_trades<-0
+channelnum$total_volume<-0
+while(i<=n){
+  if(channelflown[i,1]==channelnum[j,1]){
+    channelnum[j,5]<-channelnum[j,5]+1
+    channelnum[j,4]<-channelnum[j,4]+1
+    i<-i+1
+  }
+  else j<-j+1
+}
+library(ggplot2)
+channelnum$channel_no=as.character(channelnum$channel_no)
+q<-ggplot(channelnum,aes(x=channel_no,y=total_volume))
+q<-q+geom_bar(stat='identity')+xlab('channelNO')+ylab('18年部分总流量')
